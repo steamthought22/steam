@@ -1,13 +1,221 @@
 <!DOCTYPE html>
 <html lang="ja">
-  <head>
-    <meta charset="UTF-8">
-    <meta name ="viewport" content"width=device-width, initial-scale=1">
-    <title>steam and thought</title>
-  </head>
-  <body>
-    <img src="images/intoro.png" alt="紹介画像">
-  <h1>こんにちは！ユゲノテツガクです</h1>
-  </body>
+<head>
+<meta charset="UTF-8">
+<!-- 修正点: content の "=" が抜けていたため、スマホで縮小表示されていました -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ユゲノテツガク | steam and thought</title>
+<meta name="description" content="かじぃとことりが、お茶を淹れながらゆっくり考える。家族のこと、教育のこと、日々のこと。">
+<style>
+:root{--bg:#7bbbd1;--ink:#fff;--sub:#2f5566;--card:#efe6df;--accent:#d9a98f}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:64px}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font-family:"Hiragino Mincho ProN","Yu Mincho","Noto Serif JP",serif;
+  font-size:16px;line-height:1.9;letter-spacing:.06em;overflow-x:hidden}
+img{max-width:100%;height:auto;display:block}
+a{color:inherit}
+section{position:relative;padding:72px 6vw;overflow:hidden}
+h2{font-family:"Helvetica Neue",Arial,sans-serif;font-weight:400;font-size:clamp(32px,9vw,48px);
+  letter-spacing:.12em;margin:0 0 8px;line-height:1.2}
+.jp{display:block;font-size:15px;letter-spacing:.3em;margin-bottom:28px}
+.deco{position:absolute;pointer-events:none;z-index:0}
+.in{position:relative;z-index:1}
+
+/* メニュー */
+.menu-btn{position:fixed;top:12px;right:12px;z-index:30;width:48px;height:48px;border:0;border-radius:50%;
+  background:rgba(255,255,255,.85);cursor:pointer}
+.menu-btn span,.menu-btn span::before,.menu-btn span::after{display:block;position:absolute;left:14px;width:20px;height:2px;background:var(--sub);content:"";transition:.25s}
+.menu-btn span{top:23px}.menu-btn span::before{top:-7px;left:0}.menu-btn span::after{top:7px;left:0}
+.menu-btn[aria-expanded="true"] span{background:transparent}
+.menu-btn[aria-expanded="true"] span::before{top:0;transform:rotate(45deg)}
+.menu-btn[aria-expanded="true"] span::after{top:0;transform:rotate(-45deg)}
+nav{position:fixed;inset:0;z-index:20;background:rgba(80,150,175,.97);display:flex;flex-direction:column;
+  justify-content:center;align-items:center;gap:8px;opacity:0;visibility:hidden;transition:.25s}
+nav.open{opacity:1;visibility:visible}
+nav a{font-family:"Helvetica Neue",Arial,sans-serif;font-size:24px;letter-spacing:.15em;text-decoration:none;padding:10px 24px}
+nav .sns{margin-top:20px;display:flex;gap:8px;font-size:18px}
+nav .sns a{font-size:17px;border:1px solid #fff;border-radius:999px;padding:8px 18px}
+
+/* ヒーロー */
+#top{padding:0;text-align:center}
+.hero-title{position:absolute;top:4vw;left:0;right:0;font-size:clamp(28px,9vw,44px);letter-spacing:.3em;z-index:2}
+.hero-img{width:100%}
+.hero-lead{position:absolute;top:22vw;right:8vw;writing-mode:vertical-rl;font-size:clamp(14px,3.6vw,18px);
+  line-height:2.1;text-align:left;z-index:2}
+
+/* NEWS */
+.news dl{margin:0}
+.news dt{font-family:"Helvetica Neue",Arial,sans-serif;font-size:18px;margin-top:20px}
+.news dd{margin:0 0 0 1em;font-size:16px}
+
+/* 縦書き本文 */
+.tate{writing-mode:vertical-rl;margin:0 auto;font-size:16px;line-height:2.2;max-height:520px;overflow-x:auto}
+.story .tate{height:480px}
+
+/* MEMBERS */
+.member{display:flex;gap:16px;justify-content:center;align-items:flex-start;margin:24px 0}
+.member h3{writing-mode:vertical-rl;font-weight:400;font-size:20px;letter-spacing:.4em;margin:0}
+.member .tate{height:300px;margin:0}
+.members-img{max-width:420px;margin:24px auto 0}
+
+/* ZINES */
+.zines{background:var(--card);color:#222;border-radius:24px;padding:24px 4vw;margin:20px 0}
+.zines .row{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.zines img{width:100%;border-radius:4px}
+.zines p{text-align:center;font-size:18px;margin:16px 0 0}
+@media(min-width:700px){.zines .row{grid-template-columns:repeat(4,1fr)}}
+
+/* RADIO */
+.radio .in{display:flex;flex-direction:column;align-items:center;gap:20px}
+.radio .tate{height:200px}
+.platforms{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;list-style:none;padding:0;margin:0}
+.platforms a{display:inline-block;background:#fff;color:var(--sub);border-radius:999px;padding:10px 20px;text-decoration:none;font-size:16px}
+.cap{letter-spacing:.4em;text-align:center}
+
+/* CONTACT */
+.contact ul{list-style:none;padding:0;margin:0 auto;max-width:420px}
+.contact li{display:flex;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.4);font-size:17px}
+.contact a{text-underline-offset:4px}
+footer{text-align:center;font-size:13px;padding:24px 0 40px}
+
+@media(min-width:900px){
+  section{padding:96px 12vw}
+  .hero-img{max-width:900px;margin:0 auto}
+  .hero-title{position:static;padding-top:32px}
+  .hero-lead{top:120px;right:calc(50% - 300px)}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<button class="menu-btn" aria-label="メニューを開く" aria-expanded="false" aria-controls="gnav"><span></span></button>
+<nav id="gnav" aria-label="メインメニュー">
+  <a href="#top">TOP</a>
+  <a href="#news">NEWS</a>
+  <a href="#story">OUR STORY</a>
+  <a href="#members">MEMBERS</a>
+  <a href="#zines">ZINES</a>
+  <a href="#radio">RADIO</a>
+  <a href="#contact">CONTACT</a>
+  <div class="sns">
+    <a href="https://note.com/subarashiisaito" target="_blank" rel="noopener">note</a>
+    <a href="https://www.instagram.com/subarashiisaito/" target="_blank" rel="noopener">Instagram</a>
+    <a href="https://x.com/subarashiisaito" target="_blank" rel="noopener">X</a>
+  </div>
+</nav>
+
+<main>
+<!-- HERO: 文字抜きの一枚絵(やかん・雲)を images/hero.png で -->
+<section id="top">
+  <h1 class="hero-title">ユゲノテツガク</h1>
+  <img class="hero-img" src="images/hero.png" alt="湯気の立つ鉄瓶と雲のイラスト">
+  <p class="hero-lead">かじぃとことりが<br>お茶を淹れながら<br>ゆっくり考える<br>日々のこと<br>教育のこと<br>家族のこと</p>
+</section>
+
+<section id="news" class="news">
+  <img class="deco" src="images/deco-tree.png" alt="" style="width:42vw;max-width:260px;right:0;bottom:0">
+  <div class="in">
+    <h2>NEWS</h2><span class="jp">お知らせ</span>
+    <dl>
+      <dt>2026.9.26</dt><dd>ONE FOR ALL 横浜「たのわ古本市」に出展</dd>
+      <dt>2026.10.25</dt><dd>鎌人いち場(神奈川県鎌倉市)に出展</dd>
+      <dt>2026.11.21</dt><dd>ZINEフェス茅ヶ崎に出展</dd>
+      <dt>2027.1.16</dt><dd>ZINEフェス横浜に出展</dd>
+    </dl>
+  </div>
+</section>
+
+<section id="story" class="story">
+  <img class="deco" src="images/deco-mountain.png" alt="" style="width:60vw;max-width:360px;left:0;bottom:0">
+  <div class="in">
+    <h2>OUR STORY</h2>
+    <!-- ※本文は画像から書き起こした仮テキストです。差し替えてください -->
+    <p class="tate">二人の共通項って、なんだろう?岩手出身、横浜在住。子どもが同じ歳で、本をよく読む。仕事も好きなことも、家庭にも共通点があった。語れるテーマはいろいろありそうだ。</p>
+  </div>
+</section>
+
+<section id="members">
+  <img class="deco" src="images/deco-wave.png" alt="" style="width:40vw;max-width:220px;right:0;top:0">
+  <div class="in">
+    <h2>MEMBERS</h2>
+    <div class="member">
+      <h3>かじぃ</h3>
+      <p class="tate">キッズプログラミング教室講師。建築業界出身。短編小説やコーヒー、お茶のことなどを発信しています。</p>
+    </div>
+    <img class="members-img" src="images/members.png" alt="かじぃとことりのイラスト">
+    <div class="member">
+      <p class="tate">元教師。子育てと学習支援の活動をしています。読書とお茶が好き。二児の母。</p>
+      <h3>ことり</h3>
+    </div>
+  </div>
+</section>
+
+<section id="zines">
+  <img class="deco" src="images/deco-branch.png" alt="" style="width:46vw;max-width:260px;left:0;bottom:0">
+  <div class="in">
+    <h2>ZINES</h2><span class="jp">立ち読みできます</span>
+    <div class="zines">
+      <div class="row">
+        <img src="images/zine1.png" alt="ZINE バタフライピー">
+        <img src="images/zine2.png" alt="ZINE お茶席で出会った禅の言葉">
+        <img src="images/zine3.png" alt="ZINE The Word of Zen">
+        <img src="images/zine4.png" alt="ZINE 誰かに話を聞いてほしい!">
+      </div>
+    </div>
+    <div class="zines">
+      <div class="row">
+        <img src="images/ryu1.png" alt="">
+        <img src="images/ryu2.png" alt="">
+        <img src="images/ryu3.png" alt="">
+        <img src="images/ryu4.png" alt="">
+      </div>
+      <p>ここに、竜ちゃんのZINE</p>
+    </div>
+  </div>
+</section>
+
+<section id="radio" class="radio">
+  <div class="in">
+    <h2>RADIO<br>STATION</h2>
+    <p class="tate">音声配信サイトで喋っています。気まぐれに更新。</p>
+    <img src="images/members.png" alt="かじぃとことりのイラスト" style="max-width:320px">
+    <p class="cap">かじぃ&amp;ことりん</p>
+    <ul class="platforms">
+      <!-- 各配信ページのURLに差し替えてください -->
+      <li><a href="https://youtube.com/channel/UCgQ3GdbuPsWLcvGCsjA6DHA?si=4TXMthDhD3rN_MZs" target="_blank" rel="noopener">YouTube</a></li>
+      <li><a href="https://open.spotify.com/show/53SjbXTAsx1bw8rmBEupPi" target="_blank" rel="noopener">Spotify</a></li>
+      <li><a href="https://podcasts.apple.com/" target="_blank" rel="noopener">Apple Podcasts</a></li>
+    </ul>
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <div class="in">
+    <h2>CONTACT</h2>
+    <ul>
+      <li><span>note Cotori</span><a href="https://note.com/butterfly_pea99/portal" target="_blank" rel="noopener">@butterfly_pea99</li>
+      <li><span>note kaji</span><a href="https://note.com/infokagari84/portal" target="_blank" rel="noopener">@infokagari84</a></li>
+      <li><span>Instagram kaji</span><a href="https://www.instagram.com/kagari.84/" target="_blank" rel="noopener">@kagari.84</a></li>
+      <li><span>X(Twitter)</span><a href="https://x.com/steamthought22" target="_blank" rel="noopener">@steamthought22</li>
+    </ul>
+  </div>
+  <img class="deco" src="images/deco-lotus.png" alt="" style="width:50vw;max-width:280px;left:0;bottom:0">
+</section>
+</main>
+
+<footer>&copy; 2026 ユゲノテツガク</footer>
+
+<script>
+(function(){
+  var b=document.querySelector('.menu-btn'),n=document.getElementById('gnav');
+  function set(o){n.classList.toggle('open',o);b.setAttribute('aria-expanded',o);
+    b.setAttribute('aria-label',o?'メニューを閉じる':'メニューを開く')}
+  b.addEventListener('click',function(){set(!n.classList.contains('open'))});
+  n.addEventListener('click',function(e){if(e.target.tagName==='A')set(false)});
+})();
+</script>
+</body>
 </html>
 
