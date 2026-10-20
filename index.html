@@ -39,10 +39,23 @@ nav .sns a{font-size:17px;border:1px solid #fff;border-radius:999px;padding:8px 
 
 /* ヒーロー */
 #top{padding:0;text-align:center}
-.hero-title{position:absolute;top:4vw;left:0;right:0;font-size:clamp(28px,9vw,44px);letter-spacing:.3em;z-index:2}
-.hero-img{width:100%}
-.hero-lead{position:absolute;top:22vw;right:8vw;writing-mode:vertical-rl;font-size:clamp(14px,3.6vw,18px);
-  line-height:2.1;text-align:left;z-index:2}
+.hero-title{
+  position:static;           /* absolute をやめる */
+  margin:0;
+  padding:72px 16px 8px;     /* 上はメニューボタンを避ける余白 */
+  font-size:clamp(28px,9vw,44px);
+  letter-spacing:.3em;
+}
+.hero-lead{
+  position:static;           /* absolute をやめる */
+  writing-mode:vertical-rl;
+  width:fit-content;
+  margin:16px auto;          /* 中央に置く */
+  text-align:left;
+  font-size:clamp(15px,4vw,18px);
+  line-height:2.1;
+}
+.hero-img{width:100%;max-width:900px;margin:0 auto}
 
 /* NEWS */
 .news dl{margin:0}
@@ -82,8 +95,8 @@ footer{text-align:center;font-size:13px;padding:24px 0 40px}
 @media(min-width:900px){
   section{padding:96px 12vw}
   .hero-img{max-width:900px;margin:0 auto}
-  .hero-title{position:static;padding-top:32px}
-  .hero-lead{top:120px;right:calc(50% - 300px)}
+  /*.hero-title{position:static;padding-top:32px}
+  .hero-lead{top:120px;right:calc(50% - 300px)}*/
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
 </style>
@@ -110,8 +123,8 @@ footer{text-align:center;font-size:13px;padding:24px 0 40px}
 <!-- HERO: 文字抜きの一枚絵(やかん・雲)を images/hero.png で -->
 <section id="top">
   <h1 class="hero-title">ユゲノテツガク</h1>
-  <img class="hero-img" src="images/hero.png" alt="湯気の立つ鉄瓶と雲のイラスト">
   <p class="hero-lead">かじぃとことりが<br>お茶を淹れながら<br>ゆっくり考える<br>日々のこと<br>教育のこと<br>家族のこと</p>
+  <img class="hero-img" src="images/hero.png" alt="湯気の立つ鉄瓶と雲のイラスト">
 </section>
 
 <section id="news" class="news">
@@ -184,7 +197,7 @@ footer{text-align:center;font-size:13px;padding:24px 0 40px}
       <!-- 各配信ページのURLに差し替えてください -->
       <li><a href="https://youtube.com/channel/UCgQ3GdbuPsWLcvGCsjA6DHA?si=4TXMthDhD3rN_MZs" target="_blank" rel="noopener">YouTube</a></li>
       <li><a href="https://open.spotify.com/show/53SjbXTAsx1bw8rmBEupPi" target="_blank" rel="noopener">Spotify</a></li>
-      <li><a href="https://podcasts.apple.com/" target="_blank" rel="noopener">Apple Podcasts</a></li>
+      <li><a href="https://podcasts.apple.com/us/podcast/%E3%83%A6%E3%82%B2%E3%83%8E%E3%83%86%E3%83%84%E3%82%AC%E3%82%AFsteam-and-thought/id6824840459" target="_blank" rel="noopener">Apple Podcasts</a></li>
     </ul>
   </div>
 </section>
@@ -193,7 +206,7 @@ footer{text-align:center;font-size:13px;padding:24px 0 40px}
   <div class="in">
     <h2>CONTACT</h2>
     <ul>
-      <li><span>note Cotori</span><a href="https://note.com/butterfly_pea99/portal" target="_blank" rel="noopener">@butterfly_pea99</li>
+      <li><span>note Cotori</span><a href="https://note.com/butterfly_pea99/portal" target="_blank" rel="noopener">@butterfly_pea99</a></li>
       <li><span>note kaji</span><a href="https://note.com/infokagari84/portal" target="_blank" rel="noopener">@infokagari84</a></li>
       <li><span>Instagram kaji</span><a href="https://www.instagram.com/kagari.84/" target="_blank" rel="noopener">@kagari.84</a></li>
       <li><span>X(Twitter)</span><a href="https://x.com/steamthought22" target="_blank" rel="noopener">@steamthought22</li>
@@ -216,4 +229,3 @@ footer{text-align:center;font-size:13px;padding:24px 0 40px}
 </script>
 </body>
 </html>
-
